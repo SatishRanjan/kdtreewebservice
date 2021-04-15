@@ -17,9 +17,10 @@ import java.io.*;
 public class HttpServer {
 	@SuppressWarnings("resource")
 	public static void main(String[] args) throws Exception {
-		System.out.println("Starting simple web server");
-		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();		
-		ServerSocket serverSocket = new ServerSocket(8080);
+		int port = 8080;
+		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
+		ServerSocket serverSocket = new ServerSocket(port);
+		System.out.println("Http sever started on port:" + port);
 		while (true) {
 			Socket clientSocket = serverSocket.accept();
 			System.out.println("Client request received: " + clientSocket.toString());
