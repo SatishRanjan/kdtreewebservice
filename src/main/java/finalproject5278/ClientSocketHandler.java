@@ -1,6 +1,5 @@
 package finalproject5278;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import finalproject5278.HttpRequest.HttpRequestBuilder;
@@ -23,25 +22,27 @@ public class ClientSocketHandler implements Runnable {
 			}
 
 			HttpResponse httpResponse = HttpRequestProcessorFactory.ProcessRequest(request);
-			sendClientResponse(_clientSocket, httpResponse);
+			sendClientResponse(httpResponse);
 		} catch (Exception e) {
 			e.printStackTrace();
-			try {
-				_clientSocket.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			HttpResponse errorResponse = new HttpResponse("500 Internal Server Error", "text/html", e.getMessage().getBytes());
+			sendClientResponse(errorResponse);
 		}
-	}	
+	}
 
-	private static void sendClientResponse(Socket client, HttpResponse response) throws IOException {
-		OutputStream clientOutput = client.getOutputStream();
-		clientOutput.write(("HTTP/1.1 \r\n" + response.getStatus()).getBytes());
-		clientOutput.write(("ContentType: " + response.getContentType() + "\r\n").getBytes());
-		clientOutput.write("\r\n".getBytes());
-		clientOutput.write(response.getContent());
-		clientOutput.write("\r\n\r\n".getBytes());
-		clientOutput.flush();
-		client.close();
+	private void sendClientResponse(HttpResponse response) {
+		try {
+			OutputStream clientOutput = _clientSocket.getOutputStream();
+			clientOutput.write(("HTTP/1.1 \r\n" + response.getStatus()).getBytes());
+			clientOutput.write(("ContentType: " + response.getContentType() + "\r\n").getBytes());
+			clientOutput.write("\r\n".getBytes());
+			clientOutput.write(response.getContent());
+			clientOutput.write("\r\n\r\n".getBytes());
+			clientOutput.flush();
+			_clientSocket.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
