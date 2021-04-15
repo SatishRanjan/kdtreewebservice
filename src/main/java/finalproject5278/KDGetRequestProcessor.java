@@ -26,9 +26,9 @@ public class KDGetRequestProcessor implements IRequestProcessor {
 					status = "404 Not Found";
 				}
 			} else {
-				content = "<h1>Hello from KDGetRequestProcessor!</h1>".getBytes();
+				content = String.format("<h1>Hello from KDGetRequestProcessor!<p>The the request URI is: %s</p></h1>", request.getPath()).getBytes();
 			}
-		}
+		}		
 
 		HttpResponse response = new HttpResponse(status, contentType, content);
 		return response;
