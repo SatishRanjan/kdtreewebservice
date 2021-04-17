@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class KdGetRequestProcessor implements IRequestProcessor {
 	@Override
@@ -25,12 +29,36 @@ public class KdGetRequestProcessor implements IRequestProcessor {
 					content = "<h1>Index file not found </h1>".getBytes();
 					status = "404 Not Found";
 				}
-			} else {
-				//content = String.format("<h1>Hello from KDGetRequestProcessor!<p>The the request URI is: %s</p></h1>", request.getPath()).getBytes();				
-				content = String.format("Hello from KDGetRequestProcessor! The the request URI is: %s", request.getPath()).getBytes();
+			} else {				
 				KdTreeStore kdTreeStore = KdStoreConfigManager.get_kdTreeStore();
+				if (request.getQueryStrings() != null && !request.getQueryStrings().isEmpty()) {
+					if (kdTreeStore.getDimension() == request.getQueryStrings().size()) {
+						int[] coordinate = new int[kdTreeStore.getDimension()];
+						int index = 0;
+						Set<Entry<String, String>> entrySet = request.getQueryStrings().entrySet();
+						for (Entry<String, String> entry : entrySet) {
+							coordinate[index] = Integer.parseInt(entry.getValue());
+							++index;
+						}
+						status = "200 OK";
+						boolean doCoordinateExist = kdTreeStore.search(coordinate);
+						String result = IntStream.of(coordinate).mapToObj(Integer::toString)
+								.collect(Collectors.joining(", "));
+
+						if (doCoordinateExist) {
+							content = String.format("The coordinate (%s) exists in the k-d tree store", result)
+									.getBytes();
+						} else {
+							content = String.format("The coordinate (%s) does not exists in the k-d tree store", result)
+									.getBytes();
+						}
+					} else {
+						content = String.format("The supported k-d tree dimension is %s", kdTreeStore.getDimension())
+								.getBytes();
+					}
+				}
 			}
-		}		
+		}
 
 		HttpResponse response = new HttpResponse(status, contentType, content);
 		return response;
@@ -38,5 +66,5 @@ public class KdGetRequestProcessor implements IRequestProcessor {
 
 	private static String getFileContentType(Path filePath) throws IOException {
 		return Files.probeContentType(filePath);
-	}	
+	}
 }

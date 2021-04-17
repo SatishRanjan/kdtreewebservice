@@ -25,13 +25,18 @@ public class ClientSocketHandler implements Runnable {
 			sendClientResponse(httpResponse);
 		} catch (Exception e) {
 			e.printStackTrace();
-			HttpResponse errorResponse = new HttpResponse("500 Internal Server Error", "text/html", e.getMessage().getBytes());
+			HttpResponse errorResponse = new HttpResponse("500 Internal Server Error", "text/html",
+					e.getMessage().getBytes());
 			sendClientResponse(errorResponse);
 		}
 	}
 
 	private void sendClientResponse(HttpResponse response) {
 		try {
+			if (response.getContent() == null) {
+				_clientSocket.close();
+				return;
+			}
 			OutputStream clientOutput = _clientSocket.getOutputStream();
 			clientOutput.write(("HTTP/1.1 \r\n" + response.getStatus()).getBytes());
 			clientOutput.write(("ContentType: " + response.getContentType() + "\r\n").getBytes());

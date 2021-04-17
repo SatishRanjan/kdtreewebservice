@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class HttpRequest {
 	String _httpMethod;
@@ -12,7 +14,7 @@ public class HttpRequest {
 	String _httpVersion;
 	String _requestContentType;
 	Hashtable<String, String> _headers;
-	Hashtable<String, String> _queryStrings;
+	Map<String, String> _queryStrings;
 	String _requestBody;
 
 	private HttpRequest() {
@@ -39,7 +41,7 @@ public class HttpRequest {
 		return _headers;
 	}
 
-	public Hashtable<String, String> getQueryStrings() {
+	public Map<String, String> getQueryStrings() {
 		return _queryStrings;
 	}
 
@@ -72,7 +74,7 @@ public class HttpRequest {
 		return this;
 	}
 
-	private HttpRequest setQueryStrings(Hashtable<String, String> queryStrings) {
+	private HttpRequest setQueryStrings(Map<String, String> queryStrings) {
 		this._queryStrings = queryStrings;
 		return this;
 	}
@@ -138,7 +140,7 @@ public class HttpRequest {
 			}
 			
 			// Build the query string and set it to httpRequest object
-			Hashtable<String, String> queryStringsKeyVal = getQueryStrings(path);
+			Map<String, String> queryStringsKeyVal = getQueryStrings(path);
 			if (!queryStringsKeyVal.isEmpty()) {
 				httpRequest.setQueryStrings(queryStringsKeyVal);
 			}			
@@ -178,8 +180,8 @@ public class HttpRequest {
 			return payload.toString();
 		}
 
-		private static Hashtable<String, String> getQueryStrings(String path) throws Exception {
-			Hashtable<String, String> queryStringsKeyVal = new Hashtable<String, String>();
+		private static Map<String, String> getQueryStrings(String path) throws Exception {
+			Map<String, String> queryStringsKeyVal = new LinkedHashMap<String, String>();
 			if (path == null || path.isEmpty()) {
 				return queryStringsKeyVal;
 			}

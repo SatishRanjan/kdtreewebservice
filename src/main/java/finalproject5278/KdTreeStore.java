@@ -25,6 +25,10 @@ public class KdTreeStore implements IKdTreeOperations {
 		return searchRecord(_root, coordinate, 0);
 	}
 
+	public int getDimension() {
+		return _dimension;
+	}
+
 	private Node insertRecord(Node root, int[] coordinate, int depth) {
 		try {
 			_mutex.lock();

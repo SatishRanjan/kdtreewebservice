@@ -11,7 +11,8 @@ repositories {
 }
 
 dependencies {	
-    // Use JUnit test framework
+     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
      testImplementation('junit:junit:4.12')
      implementation('com.google.guava:guava:28.2-jre')    
 }
