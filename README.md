@@ -15,7 +15,8 @@ This implementation of this k-d tree webservice runs a webserver by opening and 
 **Going forward:**
 - Implement range search
 - Support of coordinate delete through Http DELETE verb
-- Logging
+- Packaging and deployments
+- Loggings
 - Keep improving
 
 ***References:***
