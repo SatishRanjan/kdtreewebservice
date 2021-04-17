@@ -2,4 +2,4 @@
 
 **High Level Design:**
 
-![alternativetext](/assignment3-hight-level-design.png)
+![alternativetext](/kd-tree-webservice-design.png)
