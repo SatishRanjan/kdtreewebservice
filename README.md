@@ -3,6 +3,8 @@ The implementation of this k-d tree webservice runs a webserver by opening and l
 - Inserts a n-dimensional coordinate
 - Searches for a coordinate
 
+##### Dependencies
+- Java version >= 1.8
 
 **High Level Design:**
 
