@@ -7,3 +7,7 @@ The implementation of this k-d tree webservice runs a webserver by opening and l
 **High Level Design:**
 
 ![alternativetext](/kd-tree-webservice-design.png)
+
+***References:***
+https://en.wikipedia.org/wiki/K-d_tree
+
