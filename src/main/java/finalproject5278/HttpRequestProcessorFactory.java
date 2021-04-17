@@ -7,10 +7,10 @@ public class HttpRequestProcessorFactory {
 		}
 
 		if (httpRequest.getHttpMethod() != null && httpRequest.getHttpMethod().equals("GET")) {
-			IRequestProcessor processor = new KDGetRequestProcessor();
+			IRequestProcessor processor = new KdGetRequestProcessor();
 			return processor.ProcessRequest(httpRequest);
 		} else if (httpRequest.getHttpMethod() != null && httpRequest.getHttpMethod().equals("POST")) {
-			IRequestProcessor processor = new KDPostRequestProcessor();
+			IRequestProcessor processor = new KdPostRequestProcessor();
 			return processor.ProcessRequest(httpRequest);
 		}
 

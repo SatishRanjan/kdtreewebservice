@@ -11,6 +11,7 @@ public class HttpServer {
 		int port = 8080;
 		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 		ServerSocket serverSocket = new ServerSocket(port);
+		KdStoreConfigManager.Configure(3);
 		System.out.println("Http sever started on port:" + port);
 		while (true) {
 			Socket clientSocket = serverSocket.accept();
