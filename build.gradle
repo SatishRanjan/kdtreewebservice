@@ -2,6 +2,9 @@ plugins {
 	id 'java'
 }
 
+apply plugin: 'application'
+mainClassName = 'finalproject5278.HttpServer'
+
 group = 'finalproject5278'
 version = '1.0'
 sourceCompatibility = '8'
@@ -10,11 +13,11 @@ repositories {
 	mavenCentral()
 }
 
-dependencies {	
-     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+dependencies {     
      implementation 'com.googlecode.json-simple:json-simple:1.1.1'
      testImplementation('junit:junit:4.12')
      implementation('com.google.guava:guava:28.2-jre')    
+     implementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
 }
 
 test {

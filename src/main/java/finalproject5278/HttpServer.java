@@ -12,7 +12,7 @@ public class HttpServer {
 		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 		ServerSocket serverSocket = new ServerSocket(port);
 		KdStoreConfigManager.Configure(3);
-		System.out.println("Http sever started on port:" + port);
+		System.out.println("K-d web sever started on port:" + port);
 		while (true) {
 			Socket clientSocket = serverSocket.accept();
 			System.out.println("Client request received: " + clientSocket.toString());
