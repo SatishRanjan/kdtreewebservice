@@ -3,6 +3,11 @@ The K-d tree is binary search tree (BST) data structure which is used to partiti
 This implementation of this k-d tree webservice runs a webserver by opening and listening for the incoming client Socket connection on port 8080 of the network interfaces of the host. The client socket connection is subsequently transformed into the http GET and POST API. The web service creates and hosts a thread safe instance of k-d tree data structure and currently supports couple of operations on it exposed through GET and POST http request:
 - Inserts a n-dimensional coordinate
 - Searches for a coordinate
+<br />
+Also, this project demonstrate the key concepts on building a multi threaded Http web service from the raw socket connection by:
+- Offloading client socket connection processing on a cached thread pool
+- Reading the Http input stream to read the Http method name (e.g Get, Post etc.), headers, request body content etc. and converting them into the typed objects
+- Processing the client request and sending the output stream to the client socket
 
 ##### Dependencies
 - Java version >= 1.8
