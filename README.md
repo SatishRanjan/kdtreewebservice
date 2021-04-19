@@ -7,7 +7,7 @@ This implementation of this k-d tree webservice runs a webserver by opening and 
 Also, this project demonstrate the key concepts on building a multi threaded Http web service from the raw socket connection by:
 
 - Offloading client socket connection processing on a cached thread pool
-- Reading the Http input stream to read the Http method name (e.g Get, Post etc.), headers, request body content etc. and converting them into the typed objects
+- Reading the client socket's input stream data for the Http method name (e.g Get, Post etc.), headers, request body content etc. and converting them into the typed objects
 - Processing the client request and sending the output stream to the client socket
 
 ##### Dependencies
