@@ -1,4 +1,4 @@
-package finalproject5278;
+package kdtreewebservice;
 
 public class HttpResponse {
 	private String _status;

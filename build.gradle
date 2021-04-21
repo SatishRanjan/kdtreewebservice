@@ -3,9 +3,9 @@ plugins {
 }
 
 apply plugin: 'application'
-mainClassName = 'finalproject5278.HttpServer'
+mainClassName = 'kdtreewebservice.HttpServer'
 
-group = 'finalproject5278'
+group = 'kdtreewebservice'
 version = '1.0'
 sourceCompatibility = '8'
 

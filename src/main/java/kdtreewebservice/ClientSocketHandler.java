@@ -1,8 +1,8 @@
-package finalproject5278;
+package kdtreewebservice;
 
 import java.io.OutputStream;
 import java.net.Socket;
-import finalproject5278.HttpRequest.HttpRequestBuilder;
+import kdtreewebservice.HttpRequest.HttpRequestBuilder;
 
 public class ClientSocketHandler implements Runnable {
 

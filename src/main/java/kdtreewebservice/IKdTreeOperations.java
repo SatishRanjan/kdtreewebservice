@@ -1,4 +1,4 @@
-package finalproject5278;
+package kdtreewebservice;
 
 public interface IKdTreeOperations {
 	void insert(int[] coordinate);	

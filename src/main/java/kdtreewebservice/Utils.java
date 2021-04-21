@@ -1,4 +1,4 @@
-package finalproject5278;
+package kdtreewebservice;
 
 public class Utils {
 	public static boolean isInt(String input) {
